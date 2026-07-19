@@ -1,10 +1,21 @@
 <nav>
+  <a href="/" class="logo">Rog-Time</a>
+
   <div class="nav-links">
     <a href="/">Home</a>
-    <a href="/movies">Discover Movies</a>
 
     <% if (user) { %>
       <a href="/dashboard">Dashboard</a>
+      <a href="/movie-logs">My Movies</a>
+      <a href="/movie-logs/new">Log Movie</a>
+
+      <form
+        action="/auth/sign-out?_method=DELETE"
+        method="POST"
+        class="sign-out-form"
+      >
+        <button type="submit">Sign Out</button>
+      </form>
     <% } else { %>
       <a href="/auth/sign-up">Sign Up</a>
       <a href="/auth/sign-in">Sign In</a>

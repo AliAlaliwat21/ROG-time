@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Log a Movie</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <h1>Log a Movie</h1>
+
+    <form action="/movie-logs" method="POST">
+      <label for="title">Movie title</label>
+
+      <input
+        id="title"
+        type="text"
+        name="title"
+        required
+      >
+
+      <button type="submit">Log Movie</button>
+    </form>
+  </main>
+</body>
+</html>

@@ -1,12 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Dashboard | Rog-Time</title>
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
+
 <body>
+  <%- include('partials/nav.ejs') %>
+
+  <main>
     <h1>Welcome to Rog-Time</h1>
-    <h2><%= user.username %>'s dashboard</h2>
+
+    <h2><%= user.username %>'s Dashboard</h2>
+
+    <p>
+      Manage your movie records before your memory abandons you.
+    </p>
+
+    <div class="dashboard-actions">
+      <a href="/movie-logs" class="main-button">
+        View My Movie Logs
+      </a>
+
+      <a href="/movie-logs/new" class="secondary-button">
+        Log a New Movie
+      </a>
+    </div>
+  </main>
 </body>
 </html>

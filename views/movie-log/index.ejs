@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Movie Logs</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <h1>My Movie Logs</h1>
+
+    <a href="/movie-logs/new">Log a Movie</a>
+
+    <% if (movieLogs.length === 0) { %>
+      <p>You have not logged any movies yet.</p>
+    <% } %>
+  </main>
+</body>
+</html>
