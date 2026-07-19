@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const movieLogSchema = new mongoose.Schema(
     {
-        user:{
+        user:{ //user is placed here to connect every movie log to the user who created it
             type:mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,

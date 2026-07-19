@@ -6,6 +6,7 @@ const dns = require("node:dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
 const path = require('path')
 
+const MovieLog = require('./models/movie-log')
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
