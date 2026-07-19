@@ -5,7 +5,7 @@ const showSignUpForm = (req, res) => {
     res.render('auth/sign-up.ejs')
 }
 
-const signUp = async (req, res) => {
+const signUp = async (req, res) => { 
     const userInDatabase = await User.findOne({
         username: req.body.username
     })

@@ -1,0 +1,13 @@
+<nav>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/movies">Discover Movies</a>
+
+    <% if (user) { %>
+      <a href="/dashboard">Dashboard</a>
+    <% } else { %>
+      <a href="/auth/sign-up">Sign Up</a>
+      <a href="/auth/sign-in">Sign In</a>
+    <% } %>
+  </div>
+</nav>

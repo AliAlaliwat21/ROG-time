@@ -1,23 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=
-    , initial-scale=1.0">
-    <title>Home Page</title>
-</head>
-<body>
-    <% if (user) { %>
-        <h1>Welcome to the app <%= user.username %></h1>
-        <form action="/auth/sign-out?_method=DELETE" method="POST">
-            <button type="submit">Sign Out</button>
-        </form>
-        <a href="/dashboard">View dashboard</a>
-    <% } else { %>
-        <a href="/auth/sign-up">Sign Up</a>
-        <a href="/auth/sign-in">Sign In</a>
-    <% } %>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    
+  <title>Rog-Time</title>
+
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+
+<body>
+
+  <%- include('partials/nav.ejs') %>
+
+  <main>
+
+    <section class="hero">
+      <div class="hero-content">
+
+        <p class="hero-label">YOUR MOVIE ACTIVITY AWAITS</p>
+
+        <h1>
+          Your watchlist deserves better.
+        </h1>
+
+        <p class="hero-description">
+          Discover movies, log what you watched, rate films, and publish
+          reviews that may or may not get your movie privileges questioned.
+        </p>
+
+        <% if (user) { %>
+
+          <p class="welcome-message">
+            Welcome back,
+            <strong><%= user.username %></strong>.
+            Your cinematic judgment will now be evaluated.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="/movies" class="main-button">
+              Enter the Movie Realm
+            </a>
+
+            <a href="/dashboard" class="secondary-button">
+              View Your Records
+            </a>
+          </div>
+
+        <% } else { %>
+
+          <p class="visitor-message">
+            Create an account before your watch history becomes completely
+            unsalvageable.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="/auth/sign-up" class="main-button">
+              Begin Your Development
+            </a>
+
+            <a href="/auth/sign-in" class="secondary-button">
+              Return to the Arena
+            </a>
+          </div>
+
+        <% } %>
+
+      </div>
+    </section>
+
+    <section class="features">
+
+      <div class="section-heading">
+        <div>
+          <p class="section-label">THE SYSTEM</p>
+          <h2>Everything you need to defend your movie taste.</h2>
+        </div>
+      </div>
+
+      <div class="feature-grid">
+
+        <article class="feature-card">
+          <p class="feature-number">01</p>
+
+          <h3>Discover</h3>
+
+          <p>
+            Search for movies and find something worth two hours of your
+            existence.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <p class="feature-number">02</p>
+
+          <h3>Track</h3>
+
+          <p>
+            Log watched movies before your memory completely abandons you.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <p class="feature-number">03</p>
+
+          <h3>Review</h3>
+
+          <p>
+            Rate movies and explain why everyone else misunderstood the
+            director’s vision.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <p class="feature-number">04</p>
+
+          <h3>Top Five</h3>
+
+          <p>
+            Select five movies to represent you. Choose carefully. This is
+            permanent evidence of your judgment.
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="popular-preview">
+
+      <div class="section-heading">
+        <div>
+          <p class="section-label">CURRENTLY DOMINATING</p>
+          <h2>Popular Movies</h2>
+        </div>
+
+        <a href="/movies" class="text-link">
+          View the full selection
+        </a>
+      </div>
+
+      <div class="movie-placeholder">
+        <h3>The movie database is preparing itself.</h3>
+
+        <p>
+          Popular movies will appear here once the TMDB API has entered the
+          arena.
+        </p>
+      </div>
+
+    </section>
+
+    <section class="final-message">
+      <p>
+        Poor ratings are temporary. Your review history is forever.
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>
+      Rog-Time &copy; 2026 — Your cinematic records have been documented.
+    </p>
+  </footer>
+
 </body>
 </html>
