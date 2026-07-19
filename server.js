@@ -4,9 +4,8 @@ const express = require("express");
 const app = express();
 const dns = require("node:dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
-const path = require('path')
 
-const MovieLog = require('./models/movie-log')
+const MovieLogController = require('./controllers/movie-logs')
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
@@ -47,9 +46,7 @@ app.use(passUserToView)
 
 
 app.get('/', (req, res) => {
-    res.render('home.ejs', {
-        user: req.session.user,
-    })
+    res.render('home.ejs')
 })
 app.get('/auth/sign-up', authCtrl.showSignUpForm )
 app.post('/auth/sign-up', authCtrl.signUp)
@@ -60,6 +57,15 @@ app.delete('/auth/sign-out', authCtrl.signOut)
 app.get('/dashboard', isSignedIn,(req,res)=>{
     res.render('dashboard.ejs')
 })
+
+app.get('/movie-logs', 
+    isSignedIn,
+    MovieLogController.listMovieLogs
+)
+app.get('/movie-logs/new', 
+    isSignedIn,
+    MovieLogController.showNewMovieLogForm
+)
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
