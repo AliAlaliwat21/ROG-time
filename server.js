@@ -4,6 +4,7 @@ const express = require("express");
 const app = express();
 const dns = require("node:dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
+const path = require('path')
 
 const MovieLogController = require('./controllers/movie-logs')
 const mongoose = require("mongoose");
@@ -65,6 +66,10 @@ app.get('/movie-logs',
 app.get('/movie-logs/new', 
     isSignedIn,
     MovieLogController.showNewMovieLogForm
+)
+app.post('/movie-logs',
+    isSignedIn,
+    MovieLogController.createMovieLog
 )
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

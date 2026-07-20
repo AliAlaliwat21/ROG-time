@@ -19,7 +19,6 @@ const movieLogSchema = new mongoose.Schema(
         },
             watchedDate: {
       type: Date,
-      required: true,
     },
 
     rating: {

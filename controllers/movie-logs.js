@@ -11,8 +11,11 @@ const showNewMovieLogForm = (req,res)=>{
 }
 
 const createMovieLog = async(req,res)=>{
-    console.log(req.body)
-    res.send('Movie log form received')
+req.body.user = req.session.user._id
+req.body.containsSpoilers = req.body.containsSpoilers === 'on'
+await MovieLog.create(req.body)
+
+res.redirect('/movie-logs')
 }
 
 module.exports = {

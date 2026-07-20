@@ -21,6 +21,42 @@
         name="title"
         required
       >
+      <label for ="genre">Genre</label>
+      <input
+      id="genre"
+      type="text"
+      name="genre"
+      required
+      >
+<label for="watchedDate">Date watched</label>
+<input
+  id="watchedDate"
+  type="date"
+  name="watchedDate"
+  required
+>
+      <label for="rating">Rating (1-5)</label>
+      <input
+      id="rating"
+      type="number"
+      name="rating"
+      min="1"
+      max="5"
+      required
+      >
+     <label for="reviewText">Review</label>
+<textarea
+  id="reviewText"
+  name="reviewText"
+></textarea>
+      <label for="containsSpoilers">
+        <input
+        id="containsSpoilers"
+        type="checkbox"
+        name="containsSpoilers"
+        >
+        Contains spoilers
+        </label>
 
       <button type="submit">Log Movie</button>
     </form>
