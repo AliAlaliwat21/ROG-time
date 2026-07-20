@@ -76,6 +76,16 @@ app.get('/movie-logs/:id',
     isSignedIn,
     MovieLogController.showMovieLog
 )
+
+app.get('/movie-logs/:id/edit',
+    isSignedIn,
+    MovieLogController.showEditMovieLogForm
+)
+
+app.put('/movie-logs/:id',
+    isSignedIn,
+    MovieLogController.updateMovieLog
+)
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
