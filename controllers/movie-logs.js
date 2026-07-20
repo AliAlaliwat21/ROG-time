@@ -40,7 +40,7 @@ const showMovieLog = async (req, res) => {
 }
 
 const showEditMovieLogForm = async (req,res)=>{
-    const movieLog = await movieLog.findById(req.params.id)
+    const movieLog = await MovieLog.findById(req.params.id)
 
     res.render('movie-log/edit.ejs',{
         movieLog:movieLog
@@ -51,7 +51,7 @@ const updateMovieLog = async (req,res)=>{
     req.body.containsSpoilers = req.body.containsSpoilers == 'on'
 
     await MovieLog.findByIdAndUpdate(req.params.id, req.body)
-    res.redirect(`/movie-logs/${req.params,id}`)
+    res.redirect(`/movie-logs/${req.params.id}`)
 }
 module.exports = {
     listMovieLogs,

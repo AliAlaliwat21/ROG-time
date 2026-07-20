@@ -36,7 +36,7 @@
         id="watchedDate"
         type="date"
         name="watchedDate"
-        value="<%= movieLog.watchedDate.toISOString().split('T')[0] %>"
+        value="<%= movieLog.watchedDate ? movieLog.watchedDate.toISOString().split('T')[0] : '' %>"
       >
 
       <label for="rating">Rating (1-5)</label>
