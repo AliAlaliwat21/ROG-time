@@ -1,8 +1,10 @@
 const MovieLog = require('../models/movie-log')
 
-const listMovieLogs = async (req,res)=>{
-    res.render('movie-log/index.ejs',{
-        movieLogs:[]
+const listMovieLogs = async (req, res) => {
+    const movieLogs = await MovieLog.find({ user: req.session.user._id })
+
+    res.render('movie-log/index.ejs', {
+        movieLogs: movieLogs
     })
 }
 

@@ -17,6 +17,9 @@
     <% if (movieLogs.length === 0) { %>
       <p>You have not logged any movies yet.</p>
     <% } %>
+    <% movieLogs.forEach(function(element){ %>
+        <h3><%= element.title %></h3>
+   <% }) %>
   </main>
 </body>
 </html>
