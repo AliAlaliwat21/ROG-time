@@ -31,8 +31,16 @@ const createMovieLog = async (req, res) => {
     res.redirect('/movie-logs')
 }
 
+const showMovieLog = async (req, res) => {
+    const movieLog = await MovieLog.findById(req.params.id)
+
+    res.render('movie-log/show.ejs', {
+        movieLog: movieLog
+    })
+}
 module.exports = {
     listMovieLogs,
     showNewMovieLogForm,
     createMovieLog,
+    showMovieLog
 }

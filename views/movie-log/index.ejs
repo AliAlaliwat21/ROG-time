@@ -18,7 +18,7 @@
       <p>You have not logged any movies yet.</p>
     <% } %>
     <% movieLogs.forEach(function(element){ %>
-        <h3><%= element.title %></h3>
+        <h3><a href='/movie-logs/<%= element._id %>'><%=element.title %></a></h3>
    <% }) %>
   </main>
 </body>

@@ -71,6 +71,11 @@ app.post('/movie-logs',
     isSignedIn,
     MovieLogController.createMovieLog
 )
+
+app.get('/movie-logs/:id',
+    isSignedIn,
+    MovieLogController.showMovieLog
+)
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
