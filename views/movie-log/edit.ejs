@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Movie Log</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
-    
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <h1>Edit Movie Log</h1>
+
+    <form action="/movie-logs/<%= movieLog._id %>?_method=PUT" method="POST">
+      <label for="title">Movie title</label>
+      <input
+        id="title"
+        type="text"
+        name="title"
+        value="<%= movieLog.title %>"
+        required
+      >
+
+      <label for="genre">Genre</label>
+      <input
+        id="genre"
+        type="text"
+        name="genre"
+        value="<%= movieLog.genre %>"
+        required
+      >
+
+      <label for="watchedDate">Date watched</label>
+      <input
+        id="watchedDate"
+        type="date"
+        name="watchedDate"
+        value="<%= movieLog.watchedDate.toISOString().split('T')[0] %>"
+      >
+
+      <label for="rating">Rating (1-5)</label>
+      <input
+        id="rating"
+        type="number"
+        name="rating"
+        min="1"
+        max="5"
+        value="<%= movieLog.rating %>"
+        required
+      >
+
+      <label for="reviewText">Review</label>
+      <textarea
+        id="reviewText"
+        name="reviewText"
+      ><%= movieLog.reviewText %></textarea>
+
+      <label for="containsSpoilers">
+        <input
+          id="containsSpoilers"
+          type="checkbox"
+          name="containsSpoilers"
+          <% if (movieLog.containsSpoilers) { %> checked <% } %>
+        >
+        Contains spoilers
+      </label>
+
+      <button type="submit">Update Movie Log</button>
+    </form>
+  </main>
 </body>
 </html>
