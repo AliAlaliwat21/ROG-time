@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= movieLog.title %> | Rog-Time</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('../partials/nav.ejs') %>
+
+  <main>
+    <h1><%= movieLog.title %></h1>
+    <p>Genre: <%= movieLog.genre %></p>
+    <p>Watched: <%= movieLog.watchedDate %></p>
+    <p>Rating: <%= movieLog.rating %>/5</p>
+    <p><%= movieLog.reviewText %></p>
+    <% if (movieLog.containsSpoilers) { %>
+      <p>⚠️ Contains spoilers</p>
+    <% } %>
+
+    <a href="/movie-logs">Back to My Movies</a>
+  </main>
+</body>
+</html>
