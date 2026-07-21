@@ -5,7 +5,6 @@ const app = express();
 const dns = require("node:dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
 const path = require('path')
-const getPopularMovies = require('./controllers/movies')
 const MovieLogController = require('./controllers/movie-logs')
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");

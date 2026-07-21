@@ -1,4 +1,3 @@
-const { default: mongoose } = require("mongoose");
 
 
 const getPopularMovies = async (req, res) => {
@@ -42,26 +41,21 @@ const showMovieDetails = async(req,res)=>{
         movie: movie
     })
 }
+const Comment = require('../models/comments')
 
-const commentSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-        required:true,
-    },
-        tmdbMovieId: {
-        type: Number,
-        required: true,
-    },
-    text: {
-        type: String,
-        required: true,
-        trim: true,
-    },
-},{ timestamps: true })
+const createComment = async (req, res) => {
+    await Comment.create({
+        user: req.session.user._id,
+        tmdbMovieId: req.params.id,
+        text: req.body.text,
+    })
+
+    res.redirect(`/movies/${req.params.id}`)
+}
 
 module.exports = {
     getPopularMovies,
     showAllPopularMovies,
-    showMovieDetails
+    showMovieDetails,
+    createComment
 }
