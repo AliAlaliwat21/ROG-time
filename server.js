@@ -5,7 +5,7 @@ const app = express();
 const dns = require("node:dns")
 dns.setServers(["8.8.8.8", "1.1.1.1"])
 const path = require('path')
-
+const getPopularMovies = require('./controllers/movies')
 const MovieLogController = require('./controllers/movie-logs')
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
@@ -46,9 +46,10 @@ app.use(session({
 app.use(passUserToView)
 
 
-app.get('/', (req, res) => {
-    res.render('home.ejs')
-})
+const MovieController = require('./controllers/movies')
+
+app.get('/', MovieController.getPopularMovies)
+
 app.get('/auth/sign-up', authCtrl.showSignUpForm )
 app.post('/auth/sign-up', authCtrl.signUp)
 app.get('/auth/sign-in', authCtrl.showSignInForm)

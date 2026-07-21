@@ -125,30 +125,23 @@
 
       </div>
     </section>
+<section class="popular-preview">
+  <div class="section-heading">
+    <div>
+      <p class="section-label">CURRENTLY DOMINATING</p>
+      <h2>Popular Movies</h2>
+    </div>
+  </div>
 
-    <section class="popular-preview">
-
-      <div class="section-heading">
-        <div>
-          <p class="section-label">CURRENTLY DOMINATING</p>
-          <h2>Popular Movies</h2>
-        </div>
-
-        <a href="/movies" class="text-link">
-          View the full selection
-        </a>
+  <div class="movie-grid">
+    <% popularMovies.forEach(function(movie) { %>
+      <div class="movie-poster">
+        <img src="https://image.tmdb.org/t/p/w300<%= movie.poster_path %>" alt="<%= movie.title %>">
+        <p><%= movie.title %></p>
       </div>
-
-      <div class="movie-placeholder">
-        <h3>The movie database is preparing itself.</h3>
-
-        <p>
-          Popular movies will appear here once the TMDB API has entered the
-          arena.
-        </p>
-      </div>
-
-    </section>
+    <% }) %>
+  </div>
+</section>
 
     <section class="final-message">
       <p>
