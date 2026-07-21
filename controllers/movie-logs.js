@@ -53,11 +53,18 @@ const updateMovieLog = async (req,res)=>{
     await MovieLog.findByIdAndUpdate(req.params.id, req.body)
     res.redirect(`/movie-logs/${req.params.id}`)
 }
+
+const deleteMovie = async(req,res)=>{
+    await MovieLog.findByIdAndDelete(req.params.id)
+        
+    res.redirect('/movie-logs')
+}
 module.exports = {
     listMovieLogs,
     showNewMovieLogForm,
     createMovieLog,
     showMovieLog,
     showEditMovieLogForm,
-    updateMovieLog
+    updateMovieLog,
+    deleteMovie
 }
