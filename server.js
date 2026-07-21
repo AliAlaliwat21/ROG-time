@@ -96,6 +96,10 @@ app.delete('/movie-logs/:id',
 app.get('/movies',
     MovieController.showAllPopularMovies
 )
+
+app.get('/movies/:id', 
+    MovieController.showMovieDetails
+)
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });

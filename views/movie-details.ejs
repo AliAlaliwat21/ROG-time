@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= movie.title %> | Rog-Time</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('partials/nav.ejs') %>
+
+  <main>
+    <div class="movie-details">
+      <img src="https://image.tmdb.org/t/p/w400<%= movie.poster_path %>" alt="<%= movie.title %>">
+
+      <div class="movie-details-info">
+        <h1><%= movie.title %></h1>
+
+        <p><%= movie.release_date ? movie.release_date.split('-')[0] : 'Unknown year' %></p>
+        <p><%= movie.runtime %> minutes</p>
+        <p>Rating: <%= movie.vote_average %>/10</p>
+
+        <h3>Overview</h3>
+        <p><%= movie.overview %></p>
+      </div>
+    </div>
+
+    <section class="movie-comments">
+      <h2>Reviews</h2>
+      <p>Comments will go here once the review system is added.</p>
+    </section>
+
+    <a href="/movies">Back to Popular Movies</a>
+  </main>
+</body>
+</html>
