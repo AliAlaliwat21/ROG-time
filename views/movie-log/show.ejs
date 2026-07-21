@@ -18,7 +18,10 @@
     <% if (movieLog.containsSpoilers) { %>
       <p>⚠️ Contains spoilers</p>
     <% } %>
-<a href="/movie-logs/<%= movieLog._id %>/edit">Edit</a><br>
+<a href="/movie-logs/<%= movieLog._id %>/edit">Edit<a><br>
+    <form action="/movie-logs/<%= movieLog._id %>?_method=DELETE" method="POST">
+  <button type="submit">Delete</button>
+</form><br>
     <a href="/movie-logs">Back to My Movies</a>
   </main>
 </body>
