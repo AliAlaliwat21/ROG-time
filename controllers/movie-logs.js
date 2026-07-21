@@ -47,16 +47,29 @@ const showEditMovieLogForm = async (req,res)=>{
     })
 }
 
-const updateMovieLog = async (req,res)=>{
-    req.body.containsSpoilers = req.body.containsSpoilers == 'on'
+const updateMovieLog = async (req, res) => {
+    const movieLog = await MovieLog.findById(req.params.id)
+
+    if (!movieLog.user.equals(req.session.user._id)) {
+        return res.send("You are not authorized to do that.")
+    }
+
+    req.body.containsSpoilers = req.body.containsSpoilers === 'on'
 
     await MovieLog.findByIdAndUpdate(req.params.id, req.body)
+
     res.redirect(`/movie-logs/${req.params.id}`)
 }
 
-const deleteMovie = async(req,res)=>{
+const deleteMovie = async (req, res) => {
+    const movieLog = await MovieLog.findById(req.params.id)
+
+    if (!movieLog.user.equals(req.session.user._id)) {
+        return res.send("You are not authorized to do that.")
+    }
+
     await MovieLog.findByIdAndDelete(req.params.id)
-        
+
     res.redirect('/movie-logs')
 }
 module.exports = {

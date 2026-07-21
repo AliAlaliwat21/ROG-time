@@ -91,6 +91,11 @@ app.delete('/movie-logs/:id',
     isSignedIn,
     MovieLogController.deleteMovie
 )
+
+// app.get('/movies',
+//     isSignedIn,
+//     movie.getMovieList
+// )
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });
