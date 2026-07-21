@@ -25,10 +25,26 @@
       </div>
     </div>
 
-    <section class="movie-comments">
-      <h2>Reviews</h2>
-      <p>Comments will go here once the review system is added.</p>
-    </section>
+<section class="movie-comments">
+  <h2>Reviews</h2>
+
+  <% if (user) { %>
+    <form action="/movies/<%= movie.id %>/comments" method="POST">
+      <label for="text">Your review</label>
+      <textarea id="text" name="text" required></textarea>
+      <button type="submit">Post Review</button>
+    </form>
+  <% } else { %>
+    <p><a href="/auth/sign-in">Sign in</a> to leave a review.</p>
+  <% } %>
+
+  <% comments.forEach(function(comment) { %>
+    <div class="comment">
+      <p><strong><%= comment.user.username %></strong></p>
+      <p><%= comment.text %></p>
+    </div>
+  <% }) %>
+</section>
 
     <a href="/movies">Back to Popular Movies</a>
   </main>

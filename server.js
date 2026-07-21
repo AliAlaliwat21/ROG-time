@@ -99,6 +99,15 @@ app.get('/movies',
 app.get('/movies/:id', 
     MovieController.showMovieDetails
 )
+
+app.get('/movies/:id', 
+    MovieController.showMovieDetails
+)
+
+app.post('/movies/:id/comments',
+    isSignedIn,
+    MovieController.createComment
+)
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);
 });

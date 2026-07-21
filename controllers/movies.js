@@ -1,4 +1,4 @@
-
+const Comment = require('../models/comments')
 
 const getPopularMovies = async (req, res) => {
     const response = await fetch('https://api.themoviedb.org/3/movie/popular', {
@@ -28,8 +28,8 @@ const showAllPopularMovies = async (req, res) => {
     })
 }
 
-const showMovieDetails = async(req,res)=>{
-        const response = await fetch(`https://api.themoviedb.org/3/movie/${req.params.id}`, {
+const showMovieDetails = async (req, res) => {
+    const response = await fetch(`https://api.themoviedb.org/3/movie/${req.params.id}`, {
         headers: {
             Authorization: `Bearer ${process.env.TMDB_TOKEN}`
         }
@@ -37,11 +37,13 @@ const showMovieDetails = async(req,res)=>{
 
     const movie = await response.json()
 
+    const comments = await Comment.find({ tmdbMovieId: req.params.id }).populate('user')
+
     res.render('movie-details.ejs', {
-        movie: movie
+        movie: movie,
+        comments: comments
     })
 }
-const Comment = require('../models/comments')
 
 const createComment = async (req, res) => {
     await Comment.create({
@@ -57,5 +59,5 @@ module.exports = {
     getPopularMovies,
     showAllPopularMovies,
     showMovieDetails,
-    createComment
+    createComment,
 }
