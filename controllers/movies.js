@@ -11,13 +11,25 @@ const getPopularMovies = async (req, res) => {
     const data = await response.json()
 
     res.render('home.ejs', {
+        popularMovies: data.results.slice(0, 5)
+    })
+}
+
+const showAllPopularMovies = async (req, res) => {
+    const response = await fetch('https://api.themoviedb.org/3/movie/popular', {
+        headers: {
+            Authorization: `Bearer ${process.env.TMDB_TOKEN}`
+        }
+    })
+
+    const data = await response.json()
+
+    res.render('movies.ejs', {
         popularMovies: data.results
     })
 }
 
-module.exports = {
-    getPopularMovies
-}
+
 
 const commentSchema = new mongoose.Schema({
     user: {
@@ -35,3 +47,8 @@ const commentSchema = new mongoose.Schema({
         trim: true,
     },
 },{ timestamps: true })
+
+module.exports = {
+    getPopularMovies,
+    showAllPopularMovies
+}
