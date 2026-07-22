@@ -29,6 +29,20 @@
       <a href="/movie-logs/new" class="secondary-button">
         Log a New Movie
       </a>
+      <section class="user-comments">
+  <h2>Your Reviews</h2>
+
+  <% if (comments.length === 0) { %>
+    <p>You haven't left any reviews yet.</p>
+  <% } %>
+
+  <% comments.forEach(function(comment) { %>
+    <div class="comment">
+      <p><%= comment.text %></p>
+      <a href="/movies/<%= comment.tmdbMovieId %>">View Movie</a>
+    </div>
+  <% }) %>
+</section>
     </div>
   </main>
 </body>

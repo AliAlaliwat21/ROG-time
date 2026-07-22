@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search: <%= query %> | Rog-Time</title>
+  <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+  <%- include('partials/nav.ejs') %>
+
+  <main>
+    <h1>Search results for "<%= query %>"</h1>
+
+    <% if (movies.length === 0) { %>
+      <p>No movies found.</p>
+    <% } %>
+
+    <div class="movie-grid">
+      <% movies.forEach(function(movie) { %>
+        <a href="/movies/<%= movie.id %>">
+          <div class="movie-poster">
+            <img src="https://image.tmdb.org/t/p/w300<%= movie.poster_path %>" alt="<%= movie.title %>">
+            <p><%= movie.title %></p>
+          </div>
+        </a>
+      <% }) %>
+    </div>
+  </main>
+</body>
+</html>

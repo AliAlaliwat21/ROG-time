@@ -55,9 +55,7 @@ app.get('/auth/sign-in', authCtrl.showSignInForm)
 app.post('/auth/sign-in', authCtrl.signIn)
 app.delete('/auth/sign-out', authCtrl.signOut)
 
-app.get('/dashboard', isSignedIn,(req,res)=>{
-    res.render('dashboard.ejs')
-})
+app.get('/dashboard', isSignedIn, MovieController.listUserComments)
 
 app.get('/movie-logs', 
     isSignedIn,
@@ -100,7 +98,6 @@ app.get('/movies/:id',
     MovieController.showMovieDetails
 )
 
-
 app.post('/movies/:id/comments',
     isSignedIn,
     MovieController.createComment
@@ -114,9 +111,8 @@ app.delete('/comments/:id',
     isSignedIn,
     MovieController.deleteComment
 )
-app.get('/search', MovieController.searchMovies)
 
-// app.get('/search', MovieController.searchMovies)
+app.get('/search', MovieController.searchMovies)
 
 app.listen(port, () => {
   console.log(`The express app is ready on port ${port}!`);

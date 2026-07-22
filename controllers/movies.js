@@ -108,6 +108,13 @@ const searchMovies = async (req, res) => {
         query: req.query.query
     })
 }
+const listUserComments = async (req, res) => {
+    const comments = await Comment.find({ user: req.session.user._id })
+
+    res.render('dashboard.ejs', {
+        comments: comments
+    })
+}
 module.exports = {
     getPopularMovies,
     showAllPopularMovies,
@@ -115,5 +122,6 @@ module.exports = {
     createComment,
     toggleFavoriteComment,
     deleteComment,
-    searchMovies
+    searchMovies,
+    listUserComments,
 }
