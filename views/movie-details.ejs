@@ -38,13 +38,31 @@
     <p><a href="/auth/sign-in">Sign in</a> to leave a review.</p>
   <% } %>
 
-  <% comments.forEach(function(comment) { %>
-    <div class="comment">
-      <p><strong><%= comment.user.username %></strong></p>
-      <p><%= comment.text %></p>
-    </div>
-  <% }) %>
-</section>
+<% comments.forEach(function(comment) { %>
+  <div class="comment">
+    <p><strong><%= comment.user.username %></strong></p>
+    <p><%= comment.text %></p>
+    <p>❤️ <%= comment.favoritedBy ? comment.favoritedBy.length : 0 %></p>
+
+<% if (user) { %>
+  <form action="/comments/<%= comment._id %>/favorite?_method=PUT" method="POST">
+    <button type="submit">
+      <% if (comment.favoritedBy && comment.favoritedBy.some(id => id.toString() === user._id)) { %>
+        Unfavorite
+      <% } else { %>
+        Favorite
+      <% } %>
+    </button>
+  </form>
+<% } %>
+
+    <% if (user && comment.user._id.toString() === user._id) { %>
+      <form action="/comments/<%= comment._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    <% } %>
+  </div>
+<% }) %>
 
     <a href="/movies">Back to Popular Movies</a>
   </main>

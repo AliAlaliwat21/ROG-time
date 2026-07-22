@@ -54,10 +54,66 @@ const createComment = async (req, res) => {
 
     res.redirect(`/movies/${req.params.id}`)
 }
+const toggleFavoriteComment = async (req, res) => {
+    const comment = await Comment.findById(req.params.id)
 
+    if (!comment.favoritedBy) {
+        comment.favoritedBy = []
+    }
+
+    console.log('Before:', comment.favoritedBy)
+
+    const alreadyFavorited = comment.favoritedBy.some(function(userId) {
+        return userId.equals(req.session.user._id)
+    })
+
+    console.log('Already favorited?', alreadyFavorited)
+
+    if (alreadyFavorited) {
+        comment.favoritedBy.pull(req.session.user._id)
+    } else {
+        comment.favoritedBy.push(req.session.user._id)
+    }
+
+    console.log('After:', comment.favoritedBy)
+
+    await comment.save()
+
+    res.redirect(`/movies/${comment.tmdbMovieId}`)
+}
+
+const deleteComment = async (req, res) => {
+    const comment = await Comment.findById(req.params.id)
+
+    if (!comment.user.equals(req.session.user._id)) {
+        return res.send("You are not authorized to do that.")
+    }
+
+    await Comment.findByIdAndDelete(req.params.id)
+
+    res.redirect(`/movies/${comment.tmdbMovieId}`)
+}
+
+const searchMovies = async (req, res) => {
+    const response = await fetch(`https://api.themoviedb.org/3/search/movie?query=${encodeURIComponent(req.query.query)}`, {
+        headers: {
+            Authorization: `Bearer ${process.env.TMDB_TOKEN}`
+        }
+    })
+
+    const data = await response.json()
+
+    res.render('search-results.ejs', {
+        movies: data.results,
+        query: req.query.query
+    })
+}
 module.exports = {
     getPopularMovies,
     showAllPopularMovies,
     showMovieDetails,
     createComment,
+    toggleFavoriteComment,
+    deleteComment,
+    searchMovies
 }
