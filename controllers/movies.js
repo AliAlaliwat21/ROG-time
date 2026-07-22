@@ -10,7 +10,8 @@ const getPopularMovies = async (req, res) => {
     const data = await response.json()
 
     res.render('home.ejs', {
-        popularMovies: data.results.slice(0, 5)
+        popularMovies: data.results.slice(0, 5),
+        heroBackdrop: data.results[0].backdrop_path
     })
 }
 
