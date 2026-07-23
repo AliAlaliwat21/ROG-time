@@ -10,21 +10,27 @@
   <%- include('../partials/nav.ejs') %>
 
   <main>
-    <h1><%= movieLog.title %></h1>
-    <p>Genre: <%= movieLog.genre %></p>
-    <p>Watched: <%= movieLog.watchedDate %></p>
-    <p>Rating: <%= movieLog.rating %>/5</p>
-    <p><%= movieLog.reviewText %></p>
-    <% if (movieLog.containsSpoilers) { %>
-      <p>⚠️ Contains spoilers</p>
-    <% } %>
-<% if (movieLog.user.toString() === user._id) { %>
-  <a href="/movie-logs/<%= movieLog._id %>/edit">Edit</a><br>
-  <form action="/movie-logs/<%= movieLog._id %>?_method=DELETE" method="POST">
-    <button type="submit">Delete</button>
-  </form><br>
-<% } %>
-    <a href="/movie-logs">Back to My Movies</a>
+<div class="movie-log-details">
+  <h1><%= movieLog.title %></h1>
+  <p>Genre: <%= movieLog.genre %></p>
+  <p>Watched: <%= movieLog.watchedDate %></p>
+  <p>Rating: <%= movieLog.rating %>/5</p>
+  <p><%= movieLog.reviewText %></p>
+  <% if (movieLog.containsSpoilers) { %>
+    <p class="spoiler-warning">⚠️ Contains spoilers</p>
+  <% } %>
+
+  <% if (movieLog.user.toString() === user._id) { %>
+    <div class="log-actions">
+      <a href="/movie-logs/<%= movieLog._id %>/edit" class="secondary-button">Edit</a>
+      <form action="/movie-logs/<%= movieLog._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    </div>
+  <% } %>
+</div>
+
+<a href="/movie-logs">Back to My Movies</a>
   </main>
 </body>
 </html>

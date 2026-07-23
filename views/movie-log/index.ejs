@@ -12,14 +12,17 @@
   <main>
     <h1>My Movie Logs</h1>
 
-    <a href="/movie-logs/new">Log a Movie</a>
+    <a href="/movie-logs/new" class="main-button">Log a Movie</a>
 
     <% if (movieLogs.length === 0) { %>
       <p>You have not logged any movies yet.</p>
     <% } %>
-    <% movieLogs.forEach(function(element){ %>
-        <h3><a href='/movie-logs/<%= element._id %>'><%=element.title %></a></h3>
-   <% }) %>
+
+    <div class="movie-log-list">
+      <% movieLogs.forEach(function(element) { %>
+        <h3><a href='/movie-logs/<%= element._id %>'><%= element.title %></a></h3>
+      <% }) %>
+    </div>
   </main>
 </body>
 </html>
