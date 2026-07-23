@@ -447,9 +447,6 @@ footer {
   color: var(--text-muted);
 }
 
-/* ============================================
-   MOVIE LOG PAGES
-   ============================================ */
 
 .movie-log-list {
   display: flex;
