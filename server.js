@@ -13,9 +13,8 @@ const session = require('express-session')
 const { MongoStore } = require('connect-mongo')
 const passUserToView = require('./middleware/pass-user-to-view.js')
 const isSignedIn = require('./middleware/is-signed-in.js')
-const authCtrl = require('./controllers/auth')// imports all the function from the controllers auth.js file for later use
+const authCtrl = require('./controllers/auth')// 
 
-// Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
 
 
@@ -25,14 +24,14 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-// Middleware to parse URL-encoded data from forms
+
 app.use(express.urlencoded({ extended: false }));
-// Middleware for using HTTP verbs such as PUT or DELETE
+
 app.use(methodOverride("_method"));
 
 app.use(express.static('public'))
 
-// Morgan for logging HTTP requests
+
 app.use(morgan('dev'));
 app.use(session({
     secret: process.env.SESSION_SECRET,
